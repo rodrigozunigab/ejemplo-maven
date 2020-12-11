@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Upload Nexus Dev2') {
             steps {               
-                nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', filePath:'/Users/servidorcasa/Documents/Cursos/2020_devops/ejemplo_maven_24_11_2020/ejemplo-maven/build/DevOpsUsach2020-0.0.1.jar', version: '0.0.2']]]
+                nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/Users/servidorcasa/Documents/Cursos/2020_devops/ejemplo_maven_24_11_2020/ejemplo-maven/build/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.2']]]
             }
         }  
       
