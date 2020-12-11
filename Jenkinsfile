@@ -11,7 +11,7 @@ pipeline {
                 sh 'mvn clean test -e'
             }
         }
-        stage('Jar Code') {
+        stage('Jar ') {
             steps {               
                 sh 'mvn clean package -e'
             }
@@ -23,17 +23,12 @@ pipeline {
              }
           }
         }
-        stage('Run Code') {
+        stage('Upload Nexus') {
             steps {               
-                sh 'nohup mvn spring-boot:run -Dserver.port=8081 &'
-                sleep 25 
+                nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.2']]]
             }
         }  
-        stage('Testing Application') {
-            steps {
-                sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
-            }
-        }          
+      
 
 
         
